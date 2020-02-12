@@ -1,0 +1,18 @@
+.TotalLine {
+    &__element {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    &__title {
+        text-transform: uppercase;
+    }
+
+    &__price {
+        font-size: 20px;
+        line-height: 25px;
+        font-weight: bold;
+    }
+}

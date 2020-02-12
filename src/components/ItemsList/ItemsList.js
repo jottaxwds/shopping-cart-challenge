@@ -29,7 +29,7 @@ const ItemsList = () => (
     <ItemsListContent
       itemsInfo={itemsExample}
       onUpdateShoppingCart={() => {}}
-      showDetails={() => {}}
+      onShowDetails={() => {}}
     />
   </>
 );
