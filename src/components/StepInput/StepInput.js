@@ -8,9 +8,8 @@ import Button from '../Button';
 const StepInput = ({ onIncrement, onDecrement, onChange, currentValue }) => (
   <>
     <Button
-      onClick={() => {
-        onDecrement(currentValue);
-      }}
+      data-testid="add-item"
+      onClick={onDecrement}
       extraClassNames={'Button__count'}
     >
       -
@@ -23,9 +22,8 @@ const StepInput = ({ onIncrement, onDecrement, onChange, currentValue }) => (
       onChange={onChange}
     />
     <Button
-      onClick={() => {
-        onIncrement(currentValue);
-      }}
+      data-testid="remove-item"
+      onClick={onIncrement}
       extraClassNames={'Button__count'}
     >
       +

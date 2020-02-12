@@ -5,11 +5,7 @@ import './Button.scss';
 
 const Button = ({ children, onClick, extraClassNames }) => {
   return (
-    <button
-      data-testid="button-component"
-      className={`Button ${extraClassNames}`}
-      onClick={onClick}
-    >
+    <button className={`Button ${extraClassNames}`} onClick={onClick}>
       {children}
     </button>
   );
