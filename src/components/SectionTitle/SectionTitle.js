@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './SectionTitle.scss';
 
 const SectionTitle = ({ children }) => (
-  <h1 data-testid="section-title-component" class="Section__main">
+  <h1 data-testid="section-title-component" className="Section__main">
     {children}
   </h1>
 );

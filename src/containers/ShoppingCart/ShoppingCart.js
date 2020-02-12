@@ -4,10 +4,12 @@ import './ShoppingCart.scss';
 
 import SectionTitle from './../../components/SectionTitle';
 
-const ShoppingCart = () => (
-  <section className="Products">
-    <SectionTitle>Shopping Cart</SectionTitle>
-  </section>
-);
+const ShoppingCart = () => {
+  return (
+    <section className="Products">
+      <SectionTitle>Shopping Cart</SectionTitle>
+    </section>
+  );
+};
 
 export default ShoppingCart;
