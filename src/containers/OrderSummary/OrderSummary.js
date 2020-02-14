@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { CheckoutContext } from './../../context';
 
 import './OrderSummary.scss';
 
@@ -8,38 +10,31 @@ import TotalList from './../../components/TotalList';
 import TotalLine from './../../components/TotalLine';
 import DiscountsList from './../../components/DiscountsList';
 
-const appliedDiscountsExample = [
-  {
-    description: '2x1 Mug offer',
-    discount: -10
-  },
-  {
-    description: 'x3 Shirt offer',
-    discount: -3
-  },
-  {
-    description: 'Promo code',
-    discount: 0
-  }
-];
+const OrderSummary = () => {
+  const {
+    state: {
+      currency,
+      checkout: { discounts, totalSummaryItems, totalSummary, totalPrice }
+    }
+  } = useContext(CheckoutContext);
 
-const currency = '€';
+  return (
+    <aside className="Summary">
+      <SectionTitle>Order Summary</SectionTitle>
+      <TotalList
+        totalItems={totalSummaryItems}
+        totalValue={totalSummary}
+        currency={currency}
+      />
 
-const OrderSummary = () => (
-  <aside className="Summary">
-    <SectionTitle>Order Summary</SectionTitle>
-    <TotalList totalItems={11} totalValue={120} currency={'€'} />
+      <DiscountsList appliedDiscounts={discounts} currency={currency} />
 
-    <DiscountsList
-      appliedDiscounts={appliedDiscountsExample}
-      currency={currency}
-    />
-
-    <div className="Summary__total-wrapper">
-      <TotalLine totalValue={107} currency={'€'} />
-      <Button extraClassNames={'Button__submit'}>Checkout</Button>
-    </div>
-  </aside>
-);
+      <div className="Summary__total-wrapper">
+        <TotalLine totalValue={totalPrice} currency={currency} />
+        <Button extraClassNames={'Button__submit'}>Checkout</Button>
+      </div>
+    </aside>
+  );
+};
 
 export default OrderSummary;

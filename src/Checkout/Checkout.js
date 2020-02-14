@@ -11,6 +11,7 @@ class Checkout {
     this._totalDiscounts = 0;
     this._totalSummary = 0;
     this._totalPrice = 0;
+    this.updateDiscounts();
   }
 
   get totalSummaryItems() {
@@ -77,7 +78,7 @@ class Checkout {
     let product = { ...productToAdd };
     let newSummary = [...this._summary];
     let index = newSummary.indexOf(({ code }) => code === product.code);
-    if (index != -1 && product.quantity > 0) {
+    if (index !== -1 && product.quantity > 0) {
       newSummary[index].quantity = newSummary[index].quantity - 1;
     }
     this._summary = newSummary;
@@ -105,29 +106,6 @@ class Checkout {
       []
     );
     return discounts;
-  }
-
-  /**
-   * Method to update current discounts based on
-   * new item added to summary.
-   * @param {String} code
-   * @param {Object} summaryProduct Summary product updated after add/remove
-   */
-  updateDiscountsByProduct(code, summaryProduct) {
-    let currentDiscounts = [...this._discounts];
-    const { quantity, priceUnit, name, code: sCode } = summaryProduct;
-    let newDiscountsToApply = this.checkDiscounts({
-      quantity,
-      priceUnit,
-      name,
-      code: sCode
-    });
-
-    // Replace discounts by new ones:
-    let newDiscounts = newDiscountsToApply.map(
-      obj => currentDiscounts.find(o => o.discountId === obj.discountId) || obj
-    );
-    this._discounts = newDiscounts;
   }
 
   /**
@@ -160,7 +138,6 @@ class Checkout {
       },
       []
     );
-
     let discounts = [...itemDiscounts, ...globalDiscounts];
     this._discounts = discounts;
   }
@@ -224,7 +201,7 @@ class Checkout {
       // Update
       product.quantity = product.quantity + 1;
       this.addProductToSummary(product);
-      this.updateDiscountsByProduct(code, product);
+      this.updateDiscounts();
       // Updating totals:
       this.updateAllTotals();
     } else {
@@ -246,7 +223,7 @@ class Checkout {
       // Update Summary & discounts info:
       product.quantity = product.quantity - 1;
       this.addProductToSummary(product);
-      this.updateDiscountsByProduct(code, product);
+      this.updateDiscounts();
       // Updating totals:
       this.updateAllTotals();
     } else {

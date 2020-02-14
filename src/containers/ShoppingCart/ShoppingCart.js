@@ -4,6 +4,7 @@ import './ShoppingCart.scss';
 
 import SectionTitle from './../../components/SectionTitle';
 import ItemsList from './../../components/ItemsList';
+
 const ShoppingCart = () => {
   return (
     <section className="Products">

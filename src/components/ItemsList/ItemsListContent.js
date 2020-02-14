@@ -5,9 +5,7 @@ import './ItemList.scss';
 
 import StepInput from './../StepInput';
 
-const CHANGE = 'UPDATE';
-const ADDITEM = 'ADDITEM';
-const REMOVEITEM = 'REMOVEITEM';
+import { ADDITEM, REMOVEITEM } from './../../common/constants/actions';
 
 const ItemsListContent = ({
   itemsInfo,
@@ -49,12 +47,19 @@ const ItemsListContent = ({
           </div>
           <div className="Cell Quantity__col">
             <StepInput
-              onIncrement={() => onUpdateShoppingCart({ type: ADDITEM, code })}
-              onDecrement={() =>
-                onUpdateShoppingCart({ type: REMOVEITEM, code })
+              onIncrement={({ lastValue }) =>
+                onUpdateShoppingCart({
+                  type: ADDITEM,
+                  code,
+                  lastValue
+                })
               }
-              onChange={({ target: value }) =>
-                onUpdateShoppingCart({ type: CHANGE, value, code })
+              onDecrement={({ lastValue }) =>
+                onUpdateShoppingCart({
+                  type: REMOVEITEM,
+                  code,
+                  lastValue
+                })
               }
               currentValue={quantity}
             />

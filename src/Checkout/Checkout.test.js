@@ -9,10 +9,7 @@ import {
   mockWithItemsDiscounts
 } from './__mocks__/defaultMocks';
 
-import {
-  oneTshirtSummaryMock,
-  fourTshirtSummaryMock
-} from './__mocks__/scanMocks';
+import { oneTshirtSummaryMock } from './__mocks__/scanMocks';
 
 describe('Checkout unit test: ->', () => {
   beforeEach(() => {
