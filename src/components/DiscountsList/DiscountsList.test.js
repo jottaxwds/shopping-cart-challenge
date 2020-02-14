@@ -6,23 +6,23 @@ describe('DiscountsList unit tests ->', () => {
   const appliedDiscountsExample = [
     {
       description: '2x1 Mug offer',
-      discount: -10,
-      currency: '€'
+      discount: -10
     },
     {
       description: 'x3 Shirt offer',
-      discount: -3,
-      currency: '€'
+      discount: -3
     },
     {
       description: 'Promo code',
-      discount: 0,
-      currency: '€'
+      discount: 0
     }
   ];
 
+  const currency = '€';
+
   const defaultProps = {
-    appliedDiscounts: appliedDiscountsExample
+    appliedDiscounts: appliedDiscountsExample,
+    currency
   };
 
   it('Should display all given discounts:', () => {

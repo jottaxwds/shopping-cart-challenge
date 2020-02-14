@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import './DiscountsList.scss';
 
-const DiscountsList = ({ appliedDiscounts }) => (
+const DiscountsList = ({ appliedDiscounts, currency }) => (
   <div className="Discounts">
     <h2 className="Discounts__title">DISCOUNTS</h2>
     <ul data-testid="discounts-list" className="Discounts__list">
-      {appliedDiscounts.map(({ description, discount, currency }) => (
+      {appliedDiscounts.map(({ description, discount }) => (
         <li
           key={`disc-${description.split(' ').join('')}`}
           data-testid="discount-item"
@@ -31,10 +31,10 @@ DiscountsList.propTypes = {
   appliedDiscounts: PropTypes.arrayOf(
     PropTypes.shape({
       description: PropTypes.string,
-      discount: PropTypes.number,
-      currency: PropTypes.string
+      discount: PropTypes.number
     }).isRequired
-  ).isRequired
+  ).isRequired,
+  currency: PropTypes.string.isRequired
 };
 
 export default DiscountsList;
