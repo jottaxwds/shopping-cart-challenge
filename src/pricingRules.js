@@ -6,7 +6,7 @@ const pricingRules = [
   {
     id: '2x1',
     applicableTo: ['X3W2OPY'],
-    getDiscount: (quantity, priceUnit, name, code: prodCode) => {
+    getDiscount: ({quantity, priceUnit, name, code: prodCode}) => {
       let discount = 0;
         if (quantity > 0) {
           discount = parseInt(quantity / 2) * priceUnit;
