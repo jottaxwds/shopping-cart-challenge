@@ -20,7 +20,7 @@ const DiscountsList = ({ appliedDiscounts, currency }) => (
           <span
             data-testid="discount-item-value"
             className="Discounts__value"
-          >{`${discount} ${currency}`}</span>
+          >{`${discount > 0 ? '-' + discount : discount} ${currency}`}</span>
         </li>
       ))}
     </ul>
