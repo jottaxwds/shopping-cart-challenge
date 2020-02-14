@@ -1,4 +1,4 @@
-const products = [
+const productDefaults = [
   {
     image: '/img/shirt.png',
     name: 'Lana T-Shirt',
@@ -21,3 +21,5 @@ const products = [
     quantity: 0
   }
 ];
+
+export default productDefaults;
