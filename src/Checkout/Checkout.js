@@ -59,8 +59,8 @@ class Checkout {
   addProductToSummary(productToAdd) {
     let product = { ...productToAdd };
     let newSummary = [...this._summary];
-    let index = newSummary.indexOf(({ code }) => code === product.code);
-    if (index != -1) {
+    let index = newSummary.findIndex(({ code }) => code === product.code);
+    if (index !== -1) {
       newSummary[index].quantity = product.quantity;
     } else {
       newSummary.push(product);
@@ -91,9 +91,12 @@ class Checkout {
    * @returns {Array} Discounts for product in summary
    */
   checkDiscounts({ quantity, priceUnit, name, code }) {
-    let discounts = this._pricing.reduce(
+    let discounts = this._pricing.itemDiscounts.reduce(
       (result, { applicableTo, getDiscount }) => {
-        if (applicableTo.includes(code)) {
+        if (!applicableTo.length) {
+          const discount = getDiscount();
+          result.push(discount);
+        } else if (applicableTo.includes(code)) {
           const discount = getDiscount({ quantity, priceUnit, name, code });
           result.push(discount);
         }
@@ -124,7 +127,6 @@ class Checkout {
     let newDiscounts = newDiscountsToApply.map(
       obj => currentDiscounts.find(o => o.discountId === obj.discountId) || obj
     );
-
     this._discounts = newDiscounts;
   }
 
@@ -133,9 +135,34 @@ class Checkout {
    */
   updateDiscounts() {
     let summary = [...this._summary];
-    summary.forEach(product => {
-      this.updateDiscountsByProduct(product.code, product);
-    });
+    let itemDiscounts = summary.reduce(
+      (result, { quantity, priceUnit, name, code: sCode }) => {
+        let newDiscountsToApply = this.checkDiscounts({
+          quantity,
+          priceUnit,
+          name,
+          code: sCode
+        });
+        if (newDiscountsToApply) {
+          result = [...result, ...newDiscountsToApply];
+        }
+        return result;
+      },
+      []
+    );
+
+    // Global discounts (not by item)
+    let globalDiscounts = this._pricing.globalDiscounts.reduce(
+      (result, { getDiscount }) => {
+        const globalDiscount = getDiscount();
+        result = [...result, globalDiscount];
+        return result;
+      },
+      []
+    );
+
+    let discounts = [...itemDiscounts, ...globalDiscounts];
+    this._discounts = discounts;
   }
 
   /**
@@ -143,7 +170,8 @@ class Checkout {
    */
   updateTotalSummary() {
     let newTotal = this._summary.reduce((total, { priceUnit, quantity }) => {
-      total = total + priceUnit * quantity;
+      let itemPrice = priceUnit * quantity;
+      total = total + itemPrice;
       return total;
     }, 0);
     this._totalSummary = newTotal;
@@ -171,7 +199,9 @@ class Checkout {
    * Method to update total items puchased (in summary)
    */
   updateTotalSummaryItems() {
-    this._totalSummaryItems = this._summary.length;
+    this._totalSummaryItems = this._summary.reduce((result, { quantity }) => {
+      return result + quantity;
+    }, 0);
   }
 
   /**
@@ -189,7 +219,7 @@ class Checkout {
    * @param {String} code
    */
   scan(code) {
-    const product = this.getProductByCode(code);
+    const product = { ...this.getProductByCode(code) };
     if (product) {
       // Update
       product.quantity = product.quantity + 1;
