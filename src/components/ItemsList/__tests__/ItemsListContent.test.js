@@ -77,19 +77,4 @@ describe('ItemsListContent unit tests:', () => {
       expect(mockedOnUpdateShoppingCart).toHaveBeenCalled();
     });
   });
-
-  describe('Change item quantity:', () => {
-    it('Should call onUpdateShoppingCart when add-item is clicked:', () => {
-      const mockedOnUpdateShoppingCart = jest.fn();
-      const { getByTestId } = render(
-        <ItemsListContent
-          {...defaultProps}
-          onUpdateShoppingCart={mockedOnUpdateShoppingCart}
-        />
-      );
-      const input = getByTestId('StepInput-input');
-      fireEvent.change(input, { target: { value: '2' } });
-      expect(mockedOnUpdateShoppingCart).toHaveBeenCalled();
-    });
-  });
 });

@@ -26,15 +26,4 @@ describe('StepInput unit tests ->', () => {
     fireEvent.click(getByText('-'));
     expect(mockHandleOnDecrement).toHaveBeenCalled();
   });
-
-  it('Should call onChange when input value is changed:', () => {
-    const mockHandleOnChange = jest.fn();
-    const { getByTestId } = render(
-      <StepInput {...defaultProps} onChange={mockHandleOnChange} />
-    );
-    fireEvent.change(getByTestId('StepInput-input'), {
-      target: { value: '1' }
-    });
-    expect(mockHandleOnChange).toHaveBeenCalled();
-  });
 });
