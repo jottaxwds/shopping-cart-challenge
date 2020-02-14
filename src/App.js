@@ -7,8 +7,8 @@ import './App.scss';
 function App() {
   return (
     <div className="App">
-      <ShoppingCart/>
-      <OrderSummary/>
+      <ShoppingCart />
+      <OrderSummary />
     </div>
   );
 }

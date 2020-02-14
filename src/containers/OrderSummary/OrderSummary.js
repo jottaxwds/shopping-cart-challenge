@@ -11,27 +11,29 @@ import DiscountsList from './../../components/DiscountsList';
 const appliedDiscountsExample = [
   {
     description: '2x1 Mug offer',
-    discount: -10,
-    currency: '€'
+    discount: -10
   },
   {
     description: 'x3 Shirt offer',
-    discount: -3,
-    currency: '€'
+    discount: -3
   },
   {
     description: 'Promo code',
-    discount: 0,
-    currency: '€'
+    discount: 0
   }
 ];
+
+const currency = '€';
 
 const OrderSummary = () => (
   <aside className="Summary">
     <SectionTitle>Order Summary</SectionTitle>
     <TotalList totalItems={11} totalValue={120} currency={'€'} />
 
-    <DiscountsList appliedDiscounts={appliedDiscountsExample} />
+    <DiscountsList
+      appliedDiscounts={appliedDiscountsExample}
+      currency={currency}
+    />
 
     <div className="Summary__total-wrapper">
       <TotalLine totalValue={107} currency={'€'} />

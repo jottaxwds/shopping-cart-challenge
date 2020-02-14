@@ -9,13 +9,15 @@ describe('ItemsListContent unit tests:', () => {
       name: 'Shirt',
       code: 'X7R2OPX',
       quantity: 3,
-      priceValueUnit: 20,
-      priceCurrencyUnit: '€'
+      priceUnit: 20
     }
   ];
 
+  const currency = '€';
+
   const defaultProps = {
     itemsInfo: itemsExample,
+    currency,
     onUpdateShoppingCart: () => {},
     onShowDetails: () => {}
   };

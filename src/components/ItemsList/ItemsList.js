@@ -11,10 +11,11 @@ const itemsExample = [
     name: 'Shirt',
     code: 'X7R2OPX',
     quantity: 3,
-    priceValueUnit: 20,
-    priceCurrencyUnit: '€'
+    priceUnit: 20
   }
 ];
+
+const currency = '€';
 
 const colsInfoExample = [
   { colId: 'product', colText: 'PRODUCT DETAILS' },
@@ -28,6 +29,7 @@ const ItemsList = () => (
     <ItemsListHead colsInfo={colsInfoExample} />
     <ItemsListContent
       itemsInfo={itemsExample}
+      currency={currency}
       onUpdateShoppingCart={() => {}}
       onShowDetails={() => {}}
     />
