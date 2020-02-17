@@ -92,19 +92,22 @@ class Checkout {
    * @returns {Array} Discounts for product in summary
    */
   checkDiscounts({ quantity, priceUnit, name, code }) {
-    let discounts = this._pricing.itemDiscounts.reduce(
-      (result, { applicableTo, getDiscount }) => {
-        if (!applicableTo.length) {
-          const discount = getDiscount();
-          result.push(discount);
-        } else if (applicableTo.includes(code)) {
-          const discount = getDiscount({ quantity, priceUnit, name, code });
-          result.push(discount);
-        }
-        return result;
-      },
-      []
-    );
+    let discounts = [];
+    if (this._pricing && this._pricing.itemDiscounts) {
+      discounts = this._pricing.itemDiscounts.reduce(
+        (result, { applicableTo, getDiscount }) => {
+          if (!applicableTo.length) {
+            const discount = getDiscount();
+            result.push(discount);
+          } else if (applicableTo.includes(code)) {
+            const discount = getDiscount({ quantity, priceUnit, name, code });
+            result.push(discount);
+          }
+          return result;
+        },
+        []
+      );
+    }
     return discounts;
   }
 
@@ -113,7 +116,9 @@ class Checkout {
    */
   updateDiscounts() {
     let summary = [...this._summary];
-    let itemDiscounts = summary.reduce(
+    let itemDiscount = [];
+    let globalDiscount = [];
+    itemDiscount = summary.reduce(
       (result, { quantity, priceUnit, name, code: sCode }) => {
         let newDiscountsToApply = this.checkDiscounts({
           quantity,
@@ -130,15 +135,17 @@ class Checkout {
     );
 
     // Global discounts (not by item)
-    let globalDiscounts = this._pricing.globalDiscounts.reduce(
-      (result, { getDiscount }) => {
-        const globalDiscount = getDiscount();
-        result = [...result, globalDiscount];
-        return result;
-      },
-      []
-    );
-    let discounts = [...itemDiscounts, ...globalDiscounts];
+    if (this._pricing && this._pricing.globalDiscounts) {
+      globalDiscount = this._pricing.globalDiscounts.reduce(
+        (result, { getDiscount }) => {
+          const globalDiscount = getDiscount();
+          result = [...result, globalDiscount];
+          return result;
+        },
+        []
+      );
+    }
+    let discounts = [...itemDiscount, ...globalDiscount];
     this._discounts = discounts;
   }
 
