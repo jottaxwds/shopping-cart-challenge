@@ -1,3 +1,11 @@
+## Before start:
+
+- Be sure you have Node & NPM installed. You can install last version of Node & NPM using NVM (node version manager) -> https://github.com/nvm-sh/nvm
+
+- Run tests: `yarn test`
+- Run dev server: `yarn start`
+- Build a production-ready app: `yarn build`
+
 ## Initial Approach:
 
 ### Structure:
