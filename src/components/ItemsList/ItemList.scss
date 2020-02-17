@@ -1,11 +1,13 @@
-.ItemsList {
+@import './../../common/styles/units.scss';
+@import './../../common/styles/colors.scss';
 
+.ItemsList {
     &__head {
-        padding: 32px 0;
+        padding: $base_spacing*4 0;
     }
 
     &__headings {
-        color: #a6a7b3;
+        color: $regular-gray;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-size: 10px;
@@ -24,7 +26,7 @@
         justify-content: space-between;
 
         &+.ItemsList__row {
-            margin-top: 32px;
+            margin-top: $base_spacing*4;
         }
     }
 }
@@ -71,19 +73,21 @@
         margin-right: 16px;
         width: 72px;
         height: 72px;
-        border: 1px solid #cacad1;
-        border-radius: 4px;
+        border: 1px solid $gray;
+        border-radius: $unit;
+        cursor: pointer;
     }
 
     &__title {
-        color: #00A0DF;
+        color: $main-blue;
         font-size: 16px;
         line-height: 24px;
+        cursor: pointer;
     }
 
     &__code {
         border-radius: 4px;
-        color: #a6a7b3;
+        color: $gray;
         letter-spacing: 0.13px;
         font-weight: 400;
         font-size: 12px;
@@ -103,12 +107,12 @@
     }
 
     &__value {
-        color: #000000;
+        color: $black;
         font-size: 16px;
     }
 
     &__currency {
-        margin-left: 4px;
+        margin-left: $unit;
     }
 }
 

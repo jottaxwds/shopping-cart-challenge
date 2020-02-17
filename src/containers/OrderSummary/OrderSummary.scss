@@ -1,10 +1,13 @@
+@import './../../common/styles/colors.scss';
+@import './../../common/styles/units.scss';
+
 .Summary {
     display: flex;
     flex-flow: column wrap;
-    padding: 40px 32px;
+    padding: $base_spacing*5 $base_spacing*4;
     width: 312px;
-    background-color: #f3f3f3;
-    color: #212240;
+    background-color: $light-gray;
+    color: $main-dark;
 
     &>* {
         width: 100%
@@ -13,9 +16,9 @@
     &__total-wrapper {
         align-self: flex-end;
         margin-top: auto;
-        padding-top: 16px;
+        padding-top: $base_spacing*2;
         padding-bottom: 0;
         border-top: 1px solid rgba(33, 34, 64, 0.16);
-        color: #212240;
+        color: $main-dark;
     }
 }

@@ -2,13 +2,19 @@ import React, { useReducer } from 'react';
 import Checkout from './Checkout';
 import pricingRules from './Checkout/pricingRules';
 import productDefaults from './Checkout/productDefaults';
-import { ADDITEM, REMOVEITEM } from './common/constants/actions';
+import {
+  ADDITEM,
+  REMOVEITEM,
+  OPENPRODUCT,
+  CLOSEPRODUCT
+} from './common/constants/actions';
 
 const checkout = new Checkout(pricingRules, productDefaults);
 
 const initialState = {
   checkout,
-  currency: '€'
+  currency: '€',
+  product: {}
 };
 const CheckoutContext = React.createContext(initialState);
 
@@ -22,6 +28,12 @@ let reducer = (state, action) => {
         checkout.unScan(action.code);
       }
       return { ...state, checkout };
+    case OPENPRODUCT:
+      const { code } = action;
+      const product = checkout.getProductByCode(code);
+      return { ...state, checkout, product: product || {} };
+    case CLOSEPRODUCT:
+      return { ...state, checkout, product: {} };
     default:
       return state;
   }

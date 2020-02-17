@@ -1,4 +1,6 @@
+@import './../../common/styles/units.scss';
+
 .Products {
     flex: 1;
-    padding: 40px 32px 40px 56px;
+    padding: $base_spacing*5 $base_spacing*4 $base_spacing*5 $base_spacing*7;
 }

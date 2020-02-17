@@ -1,7 +1,7 @@
 class Checkout {
   _products;
   _summary;
-  _totalPrice;
+  _total;
 
   constructor(pricingRules, productDefaults) {
     this._pricing = pricingRules;
@@ -10,7 +10,7 @@ class Checkout {
     this._totalSummaryItems = 0;
     this._totalDiscounts = 0;
     this._totalSummary = 0;
-    this._totalPrice = 0;
+    this._total = 0;
     this.updateDiscounts();
   }
 
@@ -26,8 +26,8 @@ class Checkout {
     return this._totalDiscounts;
   }
 
-  get totalPrice() {
-    return this._totalPrice;
+  get total() {
+    return this._total;
   }
 
   get summary() {
@@ -168,8 +168,8 @@ class Checkout {
   /**
    * Method to update current total to pay (totalSummary - totalDiscounts)
    */
-  updateTotalPrice() {
-    this._totalPrice = this._totalSummary - this._totalDiscounts;
+  updatetotal() {
+    this._total = this._totalSummary - this._totalDiscounts;
   }
 
   /**
@@ -187,7 +187,7 @@ class Checkout {
   updateAllTotals() {
     this.updateTotalSummary();
     this.updateTotalDiscounts();
-    this.updateTotalPrice();
+    this.updatetotal();
     this.updateTotalSummaryItems();
   }
 

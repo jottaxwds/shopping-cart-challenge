@@ -1,6 +1,8 @@
+@import './../../common/styles/units.scss';
+
 .Section {
     &__main {
-        padding-bottom: 16px;
+        padding-bottom: $base_spacing*2;
         border-bottom: 1px solid rgba(33, 34, 64, 0.16);
     }
 }

@@ -1,3 +1,3 @@
-import ItemsList from './ItemsList';
-
-export default ItemsList;
+import ItemsListHead from './ItemsListHead';
+import ItemsListContent from './ItemsListContent';
+export { ItemsListHead, ItemsListContent };

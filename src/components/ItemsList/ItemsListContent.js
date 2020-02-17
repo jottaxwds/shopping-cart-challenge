@@ -5,7 +5,11 @@ import './ItemList.scss';
 
 import StepInput from './../StepInput';
 
-import { ADDITEM, REMOVEITEM } from './../../common/constants/actions';
+import {
+  ADDITEM,
+  REMOVEITEM,
+  OPENPRODUCT
+} from './../../common/constants/actions';
 
 const ItemsListContent = ({
   itemsInfo,
@@ -28,7 +32,7 @@ const ItemsListContent = ({
                 alt={name}
                 className="Product__image"
                 onClick={() => {
-                  onShowDetails(code);
+                  onShowDetails({ type: OPENPRODUCT, code });
                 }}
               />
               <div className="Product__description">
@@ -36,7 +40,7 @@ const ItemsListContent = ({
                   data-testid="product-title"
                   className="Product__title"
                   onClick={() => {
-                    onShowDetails(code);
+                    onShowDetails({ type: OPENPRODUCT, code });
                   }}
                 >
                   {name}

@@ -1,17 +1,20 @@
+@import './../../common/styles/units.scss';
+@import './../../common/styles/colors.scss';
+
 .Discounts {
     border-bottom: 1px solid rgba(33, 34, 64, 0.16);
-    padding: 32px 0;
+    padding: $base_spacing*4 0;
 
     &__title {
-        color: #717285;
+        color: $dark-gray;
         letter-spacing: 0;
         font-weight: 300;
         font-size: 12px;
-        line-height: 16px;
+        line-height: $base_spacing*2;
     }
 
     &__list {
-        margin-top: 16px;
+        margin-top: $base_spacing*2;
         list-style: none;
 
     }
@@ -23,7 +26,7 @@
         line-height: 17px;
 
         &+li {
-            margin-top: 20px;
+            margin-top: $base_spacing*2;
         }
     }
 

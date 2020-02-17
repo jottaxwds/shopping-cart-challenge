@@ -49,8 +49,8 @@ describe('Checkout unit test: ->', () => {
       expect(this.checkout.totalDiscounts).toEqual(0);
     });
 
-    it('Should return 20.00 as totalPrice after apply discounts:', () => {
-      expect(this.checkout.totalPrice).toEqual(20.0);
+    it('Should return 20.00 as total after apply discounts:', () => {
+      expect(this.checkout.total).toEqual(20.0);
     });
 
     it('Should return 1 item in totalSummaryItems:', () => {

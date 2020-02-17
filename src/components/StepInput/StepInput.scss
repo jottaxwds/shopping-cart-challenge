@@ -1,8 +1,10 @@
+@import './../../common/styles/colors.scss';
+
 .StepInput {
     &__quantity {
         width: 40px;
         height: 40px;
-        border: 2px solid #dbdbe0;
+        border: 2px solid $mid-gray;
         border-radius: 4px;
         text-align: center;
         font-size: 14px;

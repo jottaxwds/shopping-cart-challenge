@@ -1,17 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './ShoppingCart.scss';
 
 import SectionTitle from './../../components/SectionTitle';
-import ItemsList from './../../components/ItemsList';
+import ItemsList from './../ItemsList/ItemsList';
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ onShowDetails }) => {
   return (
     <section className="Products">
       <SectionTitle>Shopping Cart</SectionTitle>
-      <ItemsList />
+      <ItemsList onShowDetails={onShowDetails} />
     </section>
   );
+};
+
+ShoppingCart.defaultProps = {
+  onShowDetails: () => {}
+};
+
+ShoppingCart.propTypes = {
+  onShowDetails: PropTypes.func
 };
 
 export default ShoppingCart;

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import { CheckoutContext } from './../../context';
+import PropTypes from 'prop-types';
 
 import './OrderSummary.scss';
 
@@ -10,11 +11,11 @@ import TotalList from './../../components/TotalList';
 import TotalLine from './../../components/TotalLine';
 import DiscountsList from './../../components/DiscountsList';
 
-const OrderSummary = () => {
+const OrderSummary = ({ onCheckout }) => {
   const {
     state: {
       currency,
-      checkout: { discounts, totalSummaryItems, totalSummary, totalPrice }
+      checkout: { discounts, totalSummaryItems, totalSummary, total }
     }
   } = useContext(CheckoutContext);
 
@@ -30,11 +31,25 @@ const OrderSummary = () => {
       <DiscountsList appliedDiscounts={discounts} currency={currency} />
 
       <div className="Summary__total-wrapper">
-        <TotalLine totalValue={totalPrice} currency={currency} />
-        <Button extraClassNames={'Button__submit'}>Checkout</Button>
+        <TotalLine totalValue={total} currency={currency} />
+        <Button
+          data-testId="OrderSummary-cta"
+          extraClassNames={'Button__submit'}
+          onClick={onCheckout}
+        >
+          Checkout
+        </Button>
       </div>
     </aside>
   );
+};
+
+OrderSummary.defaultProps = {
+  onCheckout: () => {}
+};
+
+OrderSummary.propTypes = {
+  onCheckout: PropTypes.func
 };
 
 export default OrderSummary;

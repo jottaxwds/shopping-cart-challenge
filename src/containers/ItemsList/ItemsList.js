@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 
 import { CheckoutContext } from './../../context';
 
-import './ItemList.scss';
-import ItemsListContent from './ItemsListContent';
-import ItemsListHead from './ItemsListHead';
+import './../../components/ItemsList/ItemList.scss';
+
+import { ItemsListContent, ItemsListHead } from './../../components/ItemsList';
 
 const head = [
   { colId: 'product', colText: 'PRODUCT DETAILS' },
@@ -13,7 +14,7 @@ const head = [
   { colId: 'total', colText: 'TOTAL' }
 ];
 
-const ItemsList = () => {
+const ItemsList = ({ onShowDetails }) => {
   const {
     state: {
       currency,
@@ -25,6 +26,11 @@ const ItemsList = () => {
   const handleUpdateShoppingCart = ({ type, code, lastValue }) =>
     dispatch({ type, code, lastValue });
 
+  const handleOnShowDetails = ({ type, code }) => {
+    dispatch({ type, code });
+    onShowDetails();
+  };
+
   return (
     <>
       <ItemsListHead colsInfo={head} />
@@ -32,10 +38,17 @@ const ItemsList = () => {
         itemsInfo={summary}
         currency={currency}
         onUpdateShoppingCart={handleUpdateShoppingCart}
-        onShowDetails={() => {}}
+        onShowDetails={handleOnShowDetails}
       />
     </>
   );
+};
+ItemsList.defaultProps = {
+  onShowDetails: () => {}
+};
+
+ItemsList.propTypes = {
+  onShowDetails: PropTypes.func
 };
 
 export default ItemsList;
