@@ -1,6 +1,6 @@
 ## Initial Approach:
 
-### Structure:
+### Structure:
 Using create-react-app boilerplate code to avoid starting from the scratch with initial configurations and set-ups.
 
 The approach for the basic structure is to allocate isolated and atomic components without business logic inside `components` folder.
