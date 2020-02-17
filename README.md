@@ -22,7 +22,7 @@ _For security & privacy reasons, Checkout class, products and discounts data mus
 
 ### Styling and components:
 
-Between multiple options that can be used here, I decided to build as much atomic and simple components as possible without any kind of business logic, by using _SCSS & BEM namming convention_ since we already have base styles provided in `.css` and we can split them very easy for each component.
+Between multiple options that can be used here, I decided to build as much atomic and simple components as possible without any kind of business logic, by using _SCSS & BEM namming convention_ since we already have base styles provided in `.css` and we can split them very easy for each component.
 
 Provided styles are splitted into separated styles for the components, global things, variables to store colours and units to handle proportions in the gaps (margins & paddings) to build a proper layout with consistency.
 
