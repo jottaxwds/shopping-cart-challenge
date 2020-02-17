@@ -1,4 +1,4 @@
-## Before start:
+## Before start:
 
 - Be sure you have Node & NPM installed. You can install last version of Node & NPM using NVM (node version manager) -> https://github.com/nvm-sh/nvm
 
